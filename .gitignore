@@ -11,3 +11,5 @@ wheels/
 visualizations/
 data.csv
 metadata.csv
+data_final.csv
+*.csv

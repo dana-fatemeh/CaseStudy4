@@ -3,9 +3,30 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import os
+import pandas as pd
+from huggingface_hub import hf_hub_download
+
+CSV_LOCAL = "data_final.csv"
+REPO_ID = "patrickfleith/controlled-anomalies-time-series-dataset"
+CSV_REMOTE = "data.csv"  # main time-series file name on HF
+
+if not os.path.isfile(CSV_LOCAL):
+    csv_path = hf_hub_download(
+        repo_id=REPO_ID,
+        filename=CSV_REMOTE,
+        repo_type="dataset"
+    )
+    # copy to current directory with desired name
+    df_tmp = pd.read_csv(csv_path)
+    df_tmp.to_csv(CSV_LOCAL, index=False)
+
+
+REPO_ID = "patrickfleith/controlled-anomalies-time-series-dataset"
+CSV_REMOTE = "data.csv"  # main time-series file name on HF
 
 # 1) load file (adjust path if needed)
-df = pd.read_csv("data.csv", parse_dates=["timestamp"])
+df = pd.read_csv(CSV_LOCAL, parse_dates=["timestamp"])
 df = df.sort_values("timestamp").reset_index(drop=True)
 
 os.makedirs("visualizations", exist_ok=True)
