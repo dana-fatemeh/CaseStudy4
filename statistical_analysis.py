@@ -40,7 +40,7 @@ warnings.filterwarnings("ignore")
 # -----------------------
 # CONFIG
 # -----------------------
-DATA_PATH = "data.csv"       # path to your CSV
+DATA_PATH = "data_final.csv"       # path to your CSV
 OUT_DIR = "visualizations/stat_results"     # numeric outputs
 VIS_DIR = "visualizations"   # figures
 
